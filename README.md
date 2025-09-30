@@ -175,7 +175,7 @@ BlogModel.updateOne({_id: req.params.id}, req.body)).then(()
 - 現在のブランチの名前を強制的に「main」に変更します。
   （ローカルリポジトリのデフォルトブランチを「main」に設定します。）
 
-5. git remote add origin https://github.com/Ryu114-Sato/Kaitaku_App.git
+5. git remote add origin https://github.com/Ryu114-Sato/node-advanced-blog.git
 
 - GitHub 上のリポジトリ URL を「origin」という名前でリモートリポジトリとして登録します。
   （ローカルリポジトリとリモートリポジトリを連携させるための設定です。）
@@ -185,3 +185,7 @@ BlogModel.updateOne({_id: req.params.id}, req.body)).then(()
 - ローカルの「main」ブランチをリモートの「origin」リポジトリにプッシュし、今後のプッシュ・プルの対象として追跡関係を設定します。
   （これにより、リモートにも初回のコミット内容が反映されます。）
 - git branch feature_202504
+
+## Render のデプロイ
+
+デプロイ参考UR : Lhttps://qiita.com/yuto141592/items/cef9b50ea4557dfe1be7

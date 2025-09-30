@@ -71,8 +71,8 @@ app.get("/blog/create", (req, res) => {
     
 })
 
-app.post("/blog/create", (req, res) => {
-    BlogModel.create(req.body).then(() => {
+app.post("/blog/create", async(req, res) => {
+   await BlogModel.create(req.body).then(() => {
         // res.send("ブログデータの投稿に成功しました：(投稿内容は⇨)"+JSON.stringify(req.body))
         res.redirect("/")
     }).catch((error)=>{//エラーハンドリング
@@ -135,11 +135,11 @@ app.post("/blog/delete/:id", async(req,res)=>{
 })
 
 /* User create Page */
-app.get("/user/create/", async(req, res)=>{
+app.get("/user/create/", (req, res)=>{
     res.render("userCreate")
 })
 app.post("/user/create/", async(req, res)=>{
-    UserModel.create(req.body).then(()=>{
+    await UserModel.create(req.body).then(()=>{
         res.render("/user/login")
     }).catch((error) => {
         console.log("❌ User create default !", error)
@@ -153,7 +153,7 @@ app.get("/user/login",(req,res)=>{
     res.render("login")
 })
 
-app.post("/user/login", (req, res) =>{
+app.post("/user/login", async(req, res) =>{
     /*
     クライアント（ブラウザ）から、サーバーにユーザーデータを送る必要がある
     1. ユーザー情報がDBにあるのかを確認する
@@ -161,7 +161,7 @@ app.post("/user/login", (req, res) =>{
     3. passwordが一致する場合、req.session.userIdにMongoDBの_idを挿入する
     4. 
     */
-   UserModel.findOne({email:req.body.email}).then((savedData) =>{
+ await UserModel.findOne({email:req.body.email}).then((savedData) =>{
     if(savedData){
         if(req.body.password === savedData.password){
             // MongoDB の_id を挿入
