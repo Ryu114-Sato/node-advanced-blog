@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>Login Page .</title>
+        <%- include("./head"); %>
+    </head>
+    <body>
+        <%- include("./header") %>
+        <main>
+            <div>
+                <h1>LOGIN</h1>
+                <div>
+                    <form action="/user/login/" method="POST">
+                        <label for="email">email</label>
+                        <input type="text" name="email" required>
+                        <label for="password">password</label>
+                        <input type="text" name="password" required>
+                        <br />
+                        <button>Login</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <%- include("./footer"); %>
+    </body>
+</html>
+
+                        

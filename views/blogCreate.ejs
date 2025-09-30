@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <head>
+        <title>blog create page .</title>
+        <%- include("./head"); %>
+    </head>
+    <body>
+        <%- include("./header"); %>
+        <main>
+            <div class="blog-create">
+                <h1>Wrrite blog . </h1>
+                <div>
+                    <form action="/blog/create" method="POST">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" required>
+                        <label for="summary">Summary</label>
+                        <input type="text" name="summary">
+                        <label for="image" >Image</label>
+                        <input type="text" name="image" placeholder="/imag1.jpg" required>
+                        <label for="textBody">Body</label>
+                        <textarea name="textBody" rows="15" required></textarea>
+                        <br />
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <% include("./footer"); %>
+</body>
+</html>
+
+
