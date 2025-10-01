@@ -189,3 +189,12 @@ BlogModel.updateOne({_id: req.params.id}, req.body)).then(()
 ## Render のデプロイ
 
 デプロイ参考UR : Lhttps://qiita.com/yuto141592/items/cef9b50ea4557dfe1be7
+
+## MVC Model
+
+1. アプリケーション開発で広く使われている設計思想
+
+- Model:データに関係する機能
+- View：データの表示に関係する機能
+- Controller：ModelとViewを繋ぐ機能
+
