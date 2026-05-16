@@ -1,4 +1,6 @@
 
+require("dotenv").config()
+
 const express = require("express")
 const app = express()
 app.use(express.urlencoded({
@@ -19,14 +21,17 @@ app.use("/public",express.static("public"))
 
 /* sessionの設定 */
 app.use(session({
-    secret: "secretKey",
+    secret: process.env.SESSION_SECRET || (() => { throw new Error("SESSION_SECRET is not set") })(),
     resave: false,
     saveUninitialized: false,
     cookie: {maxAge: 3600000}, /* 1時間（セッションの有効期限：ミリ秒単位） */
 }))
 
 /* Connecting to MongoDB */
-mongoose.connect("mongodb+srv://ryuichi114:TahwqnnQottl3Yad@cluster0.tbmzds2.mongodb.net/blogUserDatabase?retryWrites=true&w=majority&appName=Cluster0").then(() => {
+const mongoUri = process.env.MONGODB_URI
+if (!mongoUri) throw new Error("MONGODB_URI is not set")
+
+mongoose.connect(mongoUri).then(() => {
     console.log("Success: Connected to MongoDB")
 }).catch((error) => {
     console.log("Failure connected MongoDB : "+ error)
@@ -44,4 +49,3 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log(`Listening on ${port}`)
 } )
-
